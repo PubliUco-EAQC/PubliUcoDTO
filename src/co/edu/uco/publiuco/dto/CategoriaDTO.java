@@ -30,26 +30,6 @@ public class CategoriaDTO {
         setEstado(estado);
     }
 
-    public UUID getIdentificador() {
-        return identificador;
-    }
-
-    public CategoriaDTO getCategoriaPadre() {
-        return categoriaPadre;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public EstadoDTO getEstado() {
-        return estado;
-    }
-
     public CategoriaDTO setIdentificador(UUID identificador) {
         this.identificador = identificador;
         return this;
@@ -73,5 +53,25 @@ public class CategoriaDTO {
     public CategoriaDTO setEstado(EstadoDTO estado) {
         this.estado = estado;
         return this;
+    }
+    
+    public UUID getIdentificador() {
+        return identificador;
+    }
+
+    public CategoriaDTO getCategoriaPadre() {
+        return categoriaPadre;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public EstadoDTO getEstado() {
+        return estado;
     }
 }

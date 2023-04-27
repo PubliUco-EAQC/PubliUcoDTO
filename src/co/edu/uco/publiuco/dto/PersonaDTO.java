@@ -115,7 +115,7 @@ public class PersonaDTO {
 
     public PersonaDTO setPrimerNombre(String primerNombre) {
         this.primerNombre = UtilText.applyTrim(primerNombre);
-        return this;
+        return this;>
     }
 
     public PersonaDTO setSegundoNombre(String segundoNombre) {

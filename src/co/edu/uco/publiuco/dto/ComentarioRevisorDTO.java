@@ -17,31 +17,14 @@ public class ComentarioRevisorDTO {
         setRevisorRevision(revisorRevision);
         setTipoComentarioRevisor(tipoComentarioRevisor);
         setComentario(comentario);
-
     }
+    
     public ComentarioRevisorDTO() {
         super();
         setIdentificador(UtilUUID.DEFAULT_UUID);
         setRevisorRevision(new RevisorRevisionDTO());
         setTipoComentarioRevisor(new TipoComentarioRevisorDTO());
         setComentario(UtilText.getDefaultValue());
-
-    }
-
-    public UUID getIdentificador() {
-        return identificador;
-    }
-
-    public RevisorRevisionDTO getRevisorRevision() {
-        return revisorRevision;
-    }
-
-    public TipoComentarioRevisorDTO getTipoComentarioRevisor() {
-        return tipoComentarioRevisor;
-    }
-
-    public String getComentario() {
-        return comentario;
     }
 
     public ComentarioRevisorDTO setIdentificador(UUID identificador) {
@@ -62,5 +45,21 @@ public class ComentarioRevisorDTO {
     public ComentarioRevisorDTO setComentario(String comentario) {
         this.comentario = UtilText.applyTrim(comentario);
         return this;
+    }
+    
+    public UUID getIdentificador() {
+        return identificador;
+    }
+
+    public RevisorRevisionDTO getRevisorRevision() {
+        return revisorRevision;
+    }
+
+    public TipoComentarioRevisorDTO getTipoComentarioRevisor() {
+        return tipoComentarioRevisor;
+    }
+
+    public String getComentario() {
+        return comentario;
     }
 }

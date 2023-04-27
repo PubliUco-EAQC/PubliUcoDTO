@@ -19,7 +19,7 @@ public class CalificacionDTO {
         setIdentificador(UtilUUID.DEFAULT_UUID);
         setPublicacion(new PublicacionDTO());
         setLector(new LectorDTO());
-        setFechaCalificacion(UtilDate.getDefaultValue());
+        setFechaCalificacion(UtilDate.getDefault());
         setCalificacion(UtilText.getDefaultValue());
     }
 

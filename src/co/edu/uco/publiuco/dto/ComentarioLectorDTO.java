@@ -39,34 +39,6 @@ public final class ComentarioLectorDTO {
 		setEstado(estado);
 	}
 
-	public UUID getIdentificador() {
-		return identificador;
-	}
-
-	public LectorDTO getLector() {
-		return lector;
-	}
-
-	public PublicacionDTO getPublicacion() {
-		return publicacion;
-	}
-
-	public ComentarioLectorDTO getComentarioPadre() {
-		return comentarioPadre;
-	}
-
-	public String getCotenido() {
-		return cotenido;
-	}
-
-	public LocalDateTime getFechaCalificacion() {
-		return fechaCalificacion;
-	}
-
-	public EstadoDTO getEstado() {
-		return estado;
-	}
-
 	public ComentarioLectorDTO setIdentificador(UUID identificador) {
 		this.identificador = identificador;
 		return this;
@@ -100,5 +72,33 @@ public final class ComentarioLectorDTO {
 	public ComentarioLectorDTO setFechaCalificacion(LocalDateTime fechaCalificacion) {
 		this.fechaCalificacion = fechaCalificacion;
 		return this;
+	}
+	
+	public UUID getIdentificador() {
+		return identificador;
+	}
+
+	public LectorDTO getLector() {
+		return lector;
+	}
+
+	public PublicacionDTO getPublicacion() {
+		return publicacion;
+	}
+
+	public ComentarioLectorDTO getComentarioPadre() {
+		return comentarioPadre;
+	}
+
+	public String getCotenido() {
+		return cotenido;
+	}
+
+	public LocalDateTime getFechaCalificacion() {
+		return fechaCalificacion;
+	}
+
+	public EstadoDTO getEstado() {
+		return estado;
 	}
 }

@@ -7,6 +7,7 @@ public final class AdministradorCategoriaDTO {
     private UUID identificador;
     private PersonaDTO datosPersona;
     private EstadoDTO estado;
+    
     public AdministradorCategoriaDTO() {
         super();
         setIdentificador(UtilUUID.DEFAULT_UUID);

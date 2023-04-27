@@ -25,8 +25,8 @@ public class VersionDTO {
         setPublicacion(new PublicacionDTO());
         setVersionAnterior(new VersionDTO());
         setNumeroVersion(UtilNumber.getIntegerDefaultValue());
-        setFechaCreacion(UtilDate.getDefaultValue());
-        setUltimaFechaModificacion(UtilDate.getDefaultValue());
+        setFechaCreacion(UtilDate.getDefault());
+        setUltimaFechaModificacion(UtilDate.getDefault());
         setTitulo(UtilText.getDefaultValue());
         setResumen(UtilText.getDefaultValue());
         setCuerpo(UtilText.getDefaultValue());
