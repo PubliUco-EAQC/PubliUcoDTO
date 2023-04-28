@@ -1,5 +1,6 @@
 package co.edu.uco.publiuco.dto;
 
+import co.edu.uco.publiuco.crosscutting.utils.UtilObject;
 import co.edu.uco.publiuco.crosscutting.utils.UtilText;
 import co.edu.uco.publiuco.crosscutting.utils.UtilUUID;
 
@@ -15,7 +16,7 @@ public class TipoRelacionInstitucionDTO {
         setIdentificador(UtilUUID.DEFAULT_UUID);
         setNombre(UtilText.getDefaultValue());
         setDescripcion(UtilText.getDefaultValue());
-        setEstado(new EstadoDTO());
+        setEstado(EstadoDTO.create());
     }
     public TipoRelacionInstitucionDTO(UUID identificador, String nombre, String descripcion, EstadoDTO estado) {
         setIdentificador(identificador);
@@ -55,8 +56,8 @@ public class TipoRelacionInstitucionDTO {
         return this;
     }
 
-    public TipoRelacionInstitucionDTO setEstado(EstadoDTO estado) {
-        this.estado = estado;
+    public TipoRelacionInstitucionDTO setEstado(final EstadoDTO estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoDTO.create());
         return this;
     }
 
