@@ -1,18 +1,19 @@
 package co.edu.uco.publiuco.dto;
 
+import co.edu.uco.publiuco.crosscutting.utils.UtilObject;
 import co.edu.uco.publiuco.crosscutting.utils.UtilUUID;
 
 import java.util.UUID;
 
-public class PreferenciaEscritorDTO {
+public final class PreferenciaEscritorDTO {
     private UUID identificador;
     private PerfilDTO perfil;
     private EscritorDTO escritor;
 
     public PreferenciaEscritorDTO() {
-        setIdentificador(UtilUUID.DEFAULT_UUID);
-        setPerfil(new PerfilDTO());
-        setEscritor(new EscritorDTO());
+        setIdentificador(UtilUUID.getDefaultValue());
+        setPerfil(PerfilDTO.create());
+        setEscritor(EscritorDTO.create());
     }
     public PreferenciaEscritorDTO(UUID identificador, PerfilDTO perfil, EscritorDTO escritor) {
         setIdentificador(identificador);
@@ -32,18 +33,21 @@ public class PreferenciaEscritorDTO {
         return escritor;
     }
 
-    public PreferenciaEscritorDTO setIdentificador(UUID identificador) {
-        this.identificador = identificador;
+    public PreferenciaEscritorDTO setIdentificador(final UUID identificador) {
+        this.identificador = UtilUUID.getDefault(identificador);
         return this;
     }
 
-    public PreferenciaEscritorDTO setPerfil(PerfilDTO perfil) {
-        this.perfil = perfil;
+    public PreferenciaEscritorDTO setPerfil(final PerfilDTO perfil) {
+        this.perfil = UtilObject.getDefault(perfil, PerfilDTO.create());
         return this;
     }
 
-    public PreferenciaEscritorDTO setEscritor(EscritorDTO escritor) {
-        this.escritor = escritor;
+    public PreferenciaEscritorDTO setEscritor(final EscritorDTO escritor) {
+        this.escritor = UtilObject.getDefault(escritor, EscritorDTO.create());
         return this;
+    }
+    public static PreferenciaEscritorDTO create (){
+        return new PreferenciaEscritorDTO();
     }
 }

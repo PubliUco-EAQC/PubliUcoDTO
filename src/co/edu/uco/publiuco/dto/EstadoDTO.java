@@ -1,6 +1,7 @@
 package co.edu.uco.publiuco.dto;
 
 
+import co.edu.uco.publiuco.crosscutting.utils.UtilObject;
 import co.edu.uco.publiuco.crosscutting.utils.UtilText;
 import co.edu.uco.publiuco.crosscutting.utils.UtilUUID;
 
@@ -12,28 +13,21 @@ public final class EstadoDTO {
     private UUID identificador;
     private String nombre;
     private TipoEstadoDTO tipoEstado;
-    private String descripcion;
 
 
     public EstadoDTO() {
         super();
-        setIdentificador(UtilUUID.DEFAULT_UUID);
-        setNombre(UtilText.getUtilText().getDefaultValue());
-        setTipoEstado(new TipoEstadoDTO());
-        setDescripcion(UtilText.EMPTY);
+        setIdentificador(UtilUUID.getDefaultValue());
+        setNombre(UtilText.getDefaultValue());
+        setTipoEstado(TipoEstadoDTO.create());
     }
 
 
-    public EstadoDTO(final UUID identificador, final String nombre, final TipoEstadoDTO tipoEstado, final String descripcion) {
+    public EstadoDTO(UUID identificador, String nombre, TipoEstadoDTO tipoEstado) {
         super();
         setIdentificador(identificador);
         setNombre(nombre);
         setTipoEstado(tipoEstado);
-        setDescripcion(descripcion);
-    }
-    
-    public static EstadoDTO create() {
-    	return new EstadoDTO();
     }
 
     public final EstadoDTO setIdentificador(final UUID identificador) {
@@ -42,13 +36,13 @@ public final class EstadoDTO {
     }
 
     public final EstadoDTO setNombre(final String nombre) {
-        this.nombre = UtilText.getUtilText().applyTrim(nombre);
+        this.nombre = UtilText.applyTrim(nombre);
         return this;
     }
 
     public final EstadoDTO setTipoEstado(final TipoEstadoDTO tipoEstado) {
 
-        this.tipoEstado = tipoEstado;
+        this.tipoEstado = UtilObject.getDefault(tipoEstado, TipoEstadoDTO.create());
         return this;
     }
 
@@ -64,19 +58,7 @@ public final class EstadoDTO {
         return tipoEstado;
     }
 
-	public final String getDescripcion() {
-		return descripcion;
-	}
-
-	public final EstadoDTO setDescripcion(final String descripcion) {
-		this.descripcion = UtilText.getUtilText().applyTrim(descripcion);
-		return this;
-	}
-    
-	@Override
-	public String toString() {
-		return "EstadoDTO [identificador=" + identificador + ", nombre=" + nombre + ", tipoEstado=" + tipoEstado
-				+ ", descripcion=" + descripcion + "]";
-	}
-    
+    public static EstadoDTO create (){
+        return new EstadoDTO();
+    }
 }

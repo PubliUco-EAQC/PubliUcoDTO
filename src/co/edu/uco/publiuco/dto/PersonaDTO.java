@@ -1,11 +1,12 @@
 package co.edu.uco.publiuco.dto;
 
+import co.edu.uco.publiuco.crosscutting.utils.UtilObject;
 import co.edu.uco.publiuco.crosscutting.utils.UtilText;
 import co.edu.uco.publiuco.crosscutting.utils.UtilUUID;
 
 import java.util.UUID;
 
-public class PersonaDTO {
+public final class PersonaDTO {
     private UUID identificador;
     private TipoIdentificacionDTO tipoIdentificacionDTO;
     private String numeroIdentificacion;
@@ -21,17 +22,17 @@ public class PersonaDTO {
 
     public PersonaDTO() {
         super();
-        setIdentificador(UtilUUID.DEFAULT_UUID);
-        setTipoIdentificacionDTO(new TipoIdentificacionDTO());
+        setIdentificador(UtilUUID.getDefaultValue());
+        setTipoIdentificacionDTO(TipoIdentificacionDTO.create());
         setNumeroIdentificacion(UtilText.getDefaultValue());
         setPrimerNombre(UtilText.getDefaultValue());
         setSegundoNombre(UtilText.getDefaultValue());
         setPrimerApellido(UtilText.getDefaultValue());
         setSegundoApellido(UtilText.getDefaultValue());
         setCorreoElectronico(UtilText.getDefaultValue());
-        setIndicadorPais(new PaisDTO());
+        setIndicadorPais(PaisDTO.create());
         setNumeroTelefonoMovil(UtilText.getDefaultValue());
-        setEstado(new EstadoDTO());
+        setEstado(EstadoDTO.create());
     }
 
     public PersonaDTO(UUID identificador, TipoIdentificacionDTO tipoIdentificacionDTO, String numeroIdentificacion, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String correoElectronico, PaisDTO indicadorPais, String numeroTelefonoMovil, EstadoDTO estado, TipoRelacionInstitucionDTO tipoRelacionInstitucion) {
@@ -98,63 +99,66 @@ public class PersonaDTO {
         return tipoRelacionInstitucion;
     }
 
-    public PersonaDTO setIdentificador(UUID identificador) {
-        this.identificador = identificador;
+    public PersonaDTO setIdentificador(final UUID identificador) {
+        this.identificador = UtilUUID.getDefault(identificador);
         return this;
     }
 
-    public PersonaDTO setTipoIdentificacionDTO(TipoIdentificacionDTO tipoIdentificacionDTO) {
-        this.tipoIdentificacionDTO = tipoIdentificacionDTO;
+    public PersonaDTO setTipoIdentificacionDTO(final TipoIdentificacionDTO tipoIdentificacionDTO) {
+        this.tipoIdentificacionDTO = UtilObject.getDefault(tipoIdentificacionDTO, TipoIdentificacionDTO.create());
         return this;
     }
 
-    public PersonaDTO setNumeroIdentificacion(String numeroIdentificacion) {
+    public PersonaDTO setNumeroIdentificacion(final String numeroIdentificacion) {
         this.numeroIdentificacion = UtilText.applyTrim(numeroIdentificacion);
         return this;
     }
 
-    public PersonaDTO setPrimerNombre(String primerNombre) {
+    public PersonaDTO setPrimerNombre(final String primerNombre) {
         this.primerNombre = UtilText.applyTrim(primerNombre);
         return this;
     }
 
-    public PersonaDTO setSegundoNombre(String segundoNombre) {
+    public PersonaDTO setSegundoNombre(final String segundoNombre) {
         this.segundoNombre = UtilText.applyTrim(segundoNombre);
         return this;
     }
 
-    public PersonaDTO setPrimerApellido(String primerApellido) {
+    public PersonaDTO setPrimerApellido(final String primerApellido) {
         this.primerApellido = UtilText.applyTrim(primerApellido);
         return this;
     }
 
-    public PersonaDTO setSegundoApellido(String segundoApellido) {
+    public PersonaDTO setSegundoApellido(final String segundoApellido) {
         this.segundoApellido = UtilText.applyTrim(segundoApellido);
         return this;
     }
 
-    public PersonaDTO setCorreoElectronico(String correoElectronico) {
+    public PersonaDTO setCorreoElectronico(final String correoElectronico) {
         this.correoElectronico = UtilText.applyTrim(correoElectronico);
         return this;
     }
 
-    public PersonaDTO setIndicadorPais(PaisDTO indicadorPais) {
-        this.indicadorPais = indicadorPais;
+    public PersonaDTO setIndicadorPais(final PaisDTO indicadorPais) {
+        this.indicadorPais = UtilObject.getDefault(indicadorPais, PaisDTO.create());
         return this;
     }
 
-    public PersonaDTO setNumeroTelefonoMovil(String numeroTelefonoMovil) {
+    public PersonaDTO setNumeroTelefonoMovil(final String numeroTelefonoMovil) {
         this.numeroTelefonoMovil = UtilText.applyTrim(numeroTelefonoMovil);
         return this;
     }
 
-    public PersonaDTO setEstado(EstadoDTO estado) {
-        this.estado = estado;
+    public PersonaDTO setEstado(final EstadoDTO estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoDTO.create());
         return this;
     }
 
-    public PersonaDTO setTipoRelacionInstitucion(TipoRelacionInstitucionDTO tipoRelacionInstitucion) {
-        this.tipoRelacionInstitucion = tipoRelacionInstitucion;
+    public PersonaDTO setTipoRelacionInstitucion(final TipoRelacionInstitucionDTO tipoRelacionInstitucion) {
+        this.tipoRelacionInstitucion = UtilObject.getDefault(tipoRelacionInstitucion, TipoRelacionInstitucionDTO.create());
         return this;
+    }
+    public static PersonaDTO create (){
+        return new PersonaDTO();
     }
 }

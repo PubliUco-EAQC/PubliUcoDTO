@@ -1,12 +1,13 @@
 package co.edu.uco.publiuco.dto;
 
 import co.edu.uco.publiuco.crosscutting.utils.UtilDate;
+import co.edu.uco.publiuco.crosscutting.utils.UtilObject;
 import co.edu.uco.publiuco.crosscutting.utils.UtilUUID;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class HistorialAccesoPublicacionDTO {
+public final class HistorialAccesoPublicacionDTO {
     private UUID identificador;
     private LectorDTO lector;
     private PublicacionDTO publicacion;
@@ -14,10 +15,10 @@ public class HistorialAccesoPublicacionDTO {
 
     public HistorialAccesoPublicacionDTO() {
         super();
-        setIdentificador(UtilUUID.DEFAULT_UUID);
-        setLector(new LectorDTO());
-        setPublicacion(new PublicacionDTO());
-        setFechaAcceso(UtilDate.getDefault());
+        setIdentificador(UtilUUID.getDefaultValue());
+        setLector(LectorDTO.create());
+        setPublicacion(PublicacionDTO.create());
+        setFechaAcceso(UtilDate.getDefaultValue());
     }
 
     public HistorialAccesoPublicacionDTO(UUID identificador, LectorDTO lector, PublicacionDTO publicacion, LocalDateTime fechaAcceso) {
@@ -44,23 +45,26 @@ public class HistorialAccesoPublicacionDTO {
         return fechaAcceso;
     }
 
-    public HistorialAccesoPublicacionDTO setIdentificador(UUID identificador) {
-        this.identificador = identificador;
+    public HistorialAccesoPublicacionDTO setIdentificador(final UUID identificador) {
+        this.identificador = UtilUUID.getDefault(identificador);
         return this;
     }
 
-    public HistorialAccesoPublicacionDTO setLector(LectorDTO lector) {
-        this.lector = lector;
+    public HistorialAccesoPublicacionDTO setLector(final LectorDTO lector) {
+        this.lector = UtilObject.getDefault(lector, LectorDTO.create());
         return this;
     }
 
-    public HistorialAccesoPublicacionDTO setPublicacion(PublicacionDTO publicacion) {
-        this.publicacion = publicacion;
+    public HistorialAccesoPublicacionDTO setPublicacion(final PublicacionDTO publicacion) {
+        this.publicacion = UtilObject.getDefault(publicacion, PublicacionDTO.create());
         return this;
     }
 
-    public HistorialAccesoPublicacionDTO setFechaAcceso(LocalDateTime fechaAcceso) {
-        this.fechaAcceso = fechaAcceso;
+    public HistorialAccesoPublicacionDTO setFechaAcceso(final LocalDateTime fechaAcceso) {
+        this.fechaAcceso = UtilDate.getDefault(fechaAcceso);
         return this;
+    }
+    public static HistorialAccesoPublicacionDTO create (){
+        return new HistorialAccesoPublicacionDTO();
     }
 }

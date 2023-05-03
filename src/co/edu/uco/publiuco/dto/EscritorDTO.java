@@ -1,10 +1,11 @@
 package co.edu.uco.publiuco.dto;
 
+import co.edu.uco.publiuco.crosscutting.utils.UtilObject;
 import co.edu.uco.publiuco.crosscutting.utils.UtilUUID;
 
 import java.util.UUID;
 
-public class EscritorDTO {
+public final class EscritorDTO {
     private UUID identificador;
     private PersonaDTO datosPersona;
     private TipoRelacionInstitucionDTO tipoRelacionInstitucion;
@@ -12,10 +13,10 @@ public class EscritorDTO {
 
     public EscritorDTO() {
         super();
-        setIdentificador(UtilUUID.DEFAULT_UUID);
-        setDatosPersona(new PersonaDTO());
-        setTipoRelacionInstitucion(new TipoRelacionInstitucionDTO());
-        setEstado(new EstadoDTO());
+        setIdentificador(UtilUUID.getDefaultValue());
+        setDatosPersona(PersonaDTO.create());
+        setTipoRelacionInstitucion(TipoRelacionInstitucionDTO.create());
+        setEstado(EstadoDTO.create());
     }
     public EscritorDTO(UUID identificador, PersonaDTO datosPersona, TipoRelacionInstitucionDTO tipoRelacionInstitucion, EstadoDTO estado) {
         super();
@@ -41,23 +42,26 @@ public class EscritorDTO {
         return estado;
     }
 
-    public EscritorDTO setIdentificador(UUID identificador) {
-        this.identificador = identificador;
+    public EscritorDTO setIdentificador(final UUID identificador) {
+        this.identificador = UtilUUID.getDefault(identificador);
         return this;
     }
 
-    public EscritorDTO setDatosPersona(PersonaDTO datosPersona) {
-        this.datosPersona = datosPersona;
+    public EscritorDTO setDatosPersona(final PersonaDTO datosPersona) {
+        this.datosPersona = UtilObject.getDefault(datosPersona, PersonaDTO.create());
         return this;
     }
 
-    public EscritorDTO setTipoRelacionInstitucion(TipoRelacionInstitucionDTO tipoRelacionInstitucion) {
-        this.tipoRelacionInstitucion = tipoRelacionInstitucion;
+    public EscritorDTO setTipoRelacionInstitucion(final TipoRelacionInstitucionDTO tipoRelacionInstitucion) {
+        this.tipoRelacionInstitucion = UtilObject.getDefault(tipoRelacionInstitucion, TipoRelacionInstitucionDTO.create());
         return this;
     }
 
-    public EscritorDTO setEstado(EstadoDTO estado) {
-        this.estado = estado;
+    public EscritorDTO setEstado(final EstadoDTO estado) {
+        this.estado = UtilObject.getDefault(estado,EstadoDTO.create());
         return this;
+    }
+    public static EscritorDTO create (){
+        return new EscritorDTO();
     }
 }

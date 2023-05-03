@@ -1,19 +1,20 @@
 package co.edu.uco.publiuco.dto;
 
+import co.edu.uco.publiuco.crosscutting.utils.UtilObject;
 import co.edu.uco.publiuco.crosscutting.utils.UtilUUID;
 
 import java.util.UUID;
 
-public class PreferenciaCategoriaDTO {
+public final class PreferenciaCategoriaDTO {
     private UUID identificador;
     private PerfilDTO perfil;
     private CategoriaDTO categoria;
 
     public PreferenciaCategoriaDTO() {
         super();
-        setIdentificador(UtilUUID.DEFAULT_UUID);
-        setPerfil(new PerfilDTO());
-        setCategoria(new CategoriaDTO());
+        setIdentificador(UtilUUID.getDefaultValue());
+        setPerfil(PerfilDTO.create());
+        setCategoria(CategoriaDTO.create());
     }
 
     public PreferenciaCategoriaDTO(UUID identificador, PerfilDTO perfil, CategoriaDTO categoria) {
@@ -35,18 +36,21 @@ public class PreferenciaCategoriaDTO {
         return categoria;
     }
 
-    public PreferenciaCategoriaDTO setIdentificador(UUID identificador) {
-        this.identificador = identificador;
+    public PreferenciaCategoriaDTO setIdentificador(final UUID identificador) {
+        this.identificador = UtilUUID.getDefault(identificador);
         return this;
     }
 
-    public PreferenciaCategoriaDTO setPerfil(PerfilDTO perfil) {
-        this.perfil = perfil;
+    public PreferenciaCategoriaDTO setPerfil(final PerfilDTO perfil) {
+        this.perfil = UtilObject.getDefault(perfil, PerfilDTO.create());
         return this;
     }
 
-    public PreferenciaCategoriaDTO setCategoria(CategoriaDTO categoria) {
-        this.categoria = categoria;
+    public PreferenciaCategoriaDTO setCategoria(final CategoriaDTO categoria) {
+        this.categoria = UtilObject.getDefault(categoria, CategoriaDTO.create());
         return this;
+    }
+    public static PreferenciaCategoriaDTO create (){
+        return new PreferenciaCategoriaDTO();
     }
 }

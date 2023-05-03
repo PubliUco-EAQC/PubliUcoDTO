@@ -1,5 +1,6 @@
 package co.edu.uco.publiuco.dto;
 
+import co.edu.uco.publiuco.crosscutting.utils.UtilObject;
 import co.edu.uco.publiuco.crosscutting.utils.UtilUUID;
 
 import java.util.UUID;
@@ -11,9 +12,9 @@ public final class CategoriaAdministradorCategoriaDTO {
 
 	public CategoriaAdministradorCategoriaDTO() {
 		super();
-		setIdentificador(UtilUUID.DEFAULT_UUID);
-		setCategoria(new CategoriaDTO());
-		setAdministradorCategoria(new AdministradorCategoriaDTO());
+		setIdentificador(UtilUUID.getDefaultValue());
+		setCategoria(CategoriaDTO.create());
+		setAdministradorCategoria(AdministradorCategoriaDTO.create());
 	}
 
 
@@ -30,13 +31,13 @@ public final class CategoriaAdministradorCategoriaDTO {
 	}
 
 	public final CategoriaAdministradorCategoriaDTO setCategoria(final CategoriaDTO categoria) {
-		this.categoria = categoria;
+		this.categoria = UtilObject.getDefault(categoria, CategoriaDTO.create());
 		return this;
 	}
 
 	public final CategoriaAdministradorCategoriaDTO setAdministradorCategoria(final AdministradorCategoriaDTO administradorCategoria) {
 
-		this.administradorCategoria = administradorCategoria;
+		this.administradorCategoria = UtilObject.getDefault(administradorCategoria, AdministradorCategoriaDTO.create());
 		return this;
 	}
 
@@ -52,10 +53,6 @@ public final class CategoriaAdministradorCategoriaDTO {
 		return administradorCategoria;
 	}
 
-	@Override
-	public String toString() {
-		return "EstadoTipoRelacionInstitucionDTO [identificador="+identificador+"]";
-	}
 	public static CategoriaAdministradorCategoriaDTO create (){
 		return new CategoriaAdministradorCategoriaDTO();
 	}

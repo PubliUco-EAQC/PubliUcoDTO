@@ -1,18 +1,15 @@
 package co.edu.uco.publiuco.dto;
 
-import co.edu.uco.publiuco.crosscutting.utils.UtilDate;
-import co.edu.uco.publiuco.crosscutting.utils.UtilNumber;
-import co.edu.uco.publiuco.crosscutting.utils.UtilText;
-import co.edu.uco.publiuco.crosscutting.utils.UtilUUID;
+import co.edu.uco.publiuco.crosscutting.utils.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class VersionDTO {
+public final class VersionDTO {
     private UUID identificador;
     private PublicacionDTO publicacion;
     private VersionDTO versionAnterior;
-    private int numeroVersion;
+    private Integer numeroVersion;
     private LocalDateTime fechaCreacion;
     private LocalDateTime ultimaFechaModificacion;
     private String titulo;
@@ -20,18 +17,22 @@ public class VersionDTO {
     private String cuerpo;
     private EstadoDTO estado;
 
+    private static final VersionDTO INSTANCE_DEFAULT = VersionDTO.create();
+
+
     public VersionDTO() {
-        setIdentificador(UtilUUID.DEFAULT_UUID);
-        setPublicacion(new PublicacionDTO());
-        setVersionAnterior(new VersionDTO());
+        setIdentificador(UtilUUID.getDefaultValue());
+        setPublicacion(PublicacionDTO.create());
+        setVersionAnterior(getDefaultValue());
         setNumeroVersion(UtilNumber.getIntegerDefaultValue());
-        setFechaCreacion(UtilDate.getDefault());
-        setUltimaFechaModificacion(UtilDate.getDefault());
+        setFechaCreacion(UtilDate.getDefaultValue());
+        setUltimaFechaModificacion(UtilDate.getDefaultValue());
         setTitulo(UtilText.getDefaultValue());
         setResumen(UtilText.getDefaultValue());
         setCuerpo(UtilText.getDefaultValue());
-        setEstado(new EstadoDTO());
+        setEstado(EstadoDTO.create());
     }
+
     public VersionDTO(UUID identificador, PublicacionDTO publicacion, VersionDTO versionAnterior, int numeroVersion, LocalDateTime fechaCreacion, LocalDateTime ultimaFechaModificacion, String titulo, String resumen, String cuerpo, EstadoDTO estado) {
         setIdentificador(identificador);
         setPublicacion(publicacion);
@@ -43,6 +44,10 @@ public class VersionDTO {
         setResumen(resumen);
         setCuerpo(cuerpo);
         setEstado(estado);
+    }
+
+    public static VersionDTO getDefaultValue() {
+        return INSTANCE_DEFAULT;
     }
 
     public UUID getIdentificador() {
@@ -57,7 +62,7 @@ public class VersionDTO {
         return versionAnterior;
     }
 
-    public int getNumeroVersion() {
+    public Integer getNumeroVersion() {
         return numeroVersion;
     }
 
@@ -85,53 +90,56 @@ public class VersionDTO {
         return estado;
     }
 
-    public VersionDTO setIdentificador(UUID identificador) {
-        this.identificador = identificador;
+    public VersionDTO setIdentificador(final UUID identificador) {
+        this.identificador = UtilUUID.getDefault(identificador);
         return this;
     }
 
-    public VersionDTO setPublicacion(PublicacionDTO publicacion) {
-        this.publicacion = publicacion;
+    public VersionDTO setPublicacion(final PublicacionDTO publicacion) {
+        this.publicacion = UtilObject.getDefault(publicacion, PublicacionDTO.create());
         return this;
     }
 
-    public VersionDTO setVersionAnterior(VersionDTO versionAnterior) {
-        this.versionAnterior = versionAnterior;
+    public VersionDTO setVersionAnterior(final VersionDTO versionAnterior) {
+        this.versionAnterior = UtilObject.getDefault(versionAnterior, VersionDTO.create());
         return this;
     }
 
-    public VersionDTO setNumeroVersion(int numeroVersion) {
-        this.numeroVersion = numeroVersion;
+    public VersionDTO setNumeroVersion(final Integer numeroVersion) {
+        this.numeroVersion = UtilNumber.getDefaultInt(numeroVersion);
         return this;
     }
 
-    public VersionDTO setFechaCreacion(LocalDateTime fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+    public VersionDTO setFechaCreacion(final LocalDateTime fechaCreacion) {
+        this.fechaCreacion = UtilDate.getDefault(fechaCreacion);
         return this;
     }
 
-    public VersionDTO setUltimaFechaModificacion(LocalDateTime ultimaFechaModificacion) {
-        this.ultimaFechaModificacion = ultimaFechaModificacion;
+    public VersionDTO setUltimaFechaModificacion(final LocalDateTime ultimaFechaModificacion) {
+        this.ultimaFechaModificacion = UtilDate.getDefault(ultimaFechaModificacion);
         return this;
     }
 
-    public VersionDTO setTitulo(String titulo) {
+    public VersionDTO setTitulo(final String titulo) {
         this.titulo = UtilText.applyTrim(titulo);
         return this;
     }
 
-    public VersionDTO setResumen(String resumen) {
+    public VersionDTO setResumen(final String resumen) {
         this.resumen = UtilText.applyTrim(resumen);
         return this;
     }
 
-    public VersionDTO setCuerpo(String cuerpo) {
+    public VersionDTO setCuerpo(final String cuerpo) {
         this.cuerpo = UtilText.applyTrim(cuerpo);
         return this;
     }
 
-    public VersionDTO setEstado(EstadoDTO estado) {
-        this.estado = estado;
+    public VersionDTO setEstado(final EstadoDTO estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoDTO.create());
         return this;
+    }
+    public static VersionDTO create (){
+        return new VersionDTO();
     }
 }

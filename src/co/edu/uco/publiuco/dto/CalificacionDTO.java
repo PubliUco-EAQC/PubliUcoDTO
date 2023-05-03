@@ -1,13 +1,14 @@
 package co.edu.uco.publiuco.dto;
 
 import co.edu.uco.publiuco.crosscutting.utils.UtilDate;
+import co.edu.uco.publiuco.crosscutting.utils.UtilObject;
 import co.edu.uco.publiuco.crosscutting.utils.UtilText;
 import co.edu.uco.publiuco.crosscutting.utils.UtilUUID;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class CalificacionDTO {
+public final class CalificacionDTO {
     private UUID identificador;
     private PublicacionDTO publicacion;
     private LectorDTO lector;
@@ -16,10 +17,10 @@ public class CalificacionDTO {
 
     public CalificacionDTO() {
         super();
-        setIdentificador(UtilUUID.DEFAULT_UUID);
-        setPublicacion(new PublicacionDTO());
-        setLector(new LectorDTO());
-        setFechaCalificacion(UtilDate.getDefault());
+        setIdentificador(UtilUUID.getDefaultValue());
+        setPublicacion(PublicacionDTO.create());
+        setLector(LectorDTO.create());
+        setFechaCalificacion(UtilDate.getDefaultValue());
         setCalificacion(UtilText.getDefaultValue());
     }
 
@@ -52,28 +53,31 @@ public class CalificacionDTO {
         return calificacion;
     }
 
-    public CalificacionDTO setIdentificador(UUID identificador) {
-        this.identificador = identificador;
+    public CalificacionDTO setIdentificador(final UUID identificador) {
+        this.identificador = UtilUUID.getDefault(identificador);
         return this;
     }
 
-    public CalificacionDTO setPublicacion(PublicacionDTO publicacion) {
-        this.publicacion = publicacion;
+    public CalificacionDTO setPublicacion(final PublicacionDTO publicacion) {
+        this.publicacion = UtilObject.getDefault(publicacion, PublicacionDTO.create());
         return this;
     }
 
-    public CalificacionDTO setLector(LectorDTO lector) {
-        this.lector = lector;
+    public CalificacionDTO setLector(final LectorDTO lector) {
+        this.lector = UtilObject.getDefault(lector, LectorDTO.create());
         return this;
     }
 
-    public CalificacionDTO setFechaCalificacion(LocalDateTime fechaCalificacion) {
-        this.fechaCalificacion = fechaCalificacion;
+    public CalificacionDTO setFechaCalificacion(final LocalDateTime fechaCalificacion) {
+        this.fechaCalificacion = UtilDate.getDefault(fechaCalificacion);
         return this;
     }
 
-    public CalificacionDTO setCalificacion(String calificacion) {
+    public CalificacionDTO setCalificacion(final String calificacion) {
         this.calificacion = UtilText.applyTrim(calificacion);
         return this;
+    }
+    public static CalificacionDTO create (){
+        return new CalificacionDTO();
     }
 }
