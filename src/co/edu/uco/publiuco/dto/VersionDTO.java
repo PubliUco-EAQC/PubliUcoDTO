@@ -1,6 +1,6 @@
 package co.edu.uco.publiuco.dto;
 
-import co.edu.uco.publiuco.crosscutting.utils.*;
+import co.edu.uco.publiuco.utils.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

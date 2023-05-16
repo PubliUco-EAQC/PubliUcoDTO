@@ -1,9 +1,9 @@
 package co.edu.uco.publiuco.dto;
 
 
-import co.edu.uco.publiuco.crosscutting.utils.UtilObject;
-import co.edu.uco.publiuco.crosscutting.utils.UtilText;
-import co.edu.uco.publiuco.crosscutting.utils.UtilUUID;
+import co.edu.uco.publiuco.utils.UtilObject;
+import co.edu.uco.publiuco.utils.UtilText;
+import co.edu.uco.publiuco.utils.UtilUUID;
 
 import java.util.UUID;
 
@@ -12,6 +12,7 @@ public final class EstadoDTO {
 
     private UUID identificador;
     private String nombre;
+    private String descripcion;
     private TipoEstadoDTO tipoEstado;
 
 
@@ -19,18 +20,31 @@ public final class EstadoDTO {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
         setNombre(UtilText.getDefaultValue());
+        setDescripcion(UtilText.getDefaultValue());
         setTipoEstado(TipoEstadoDTO.create());
     }
 
 
-    public EstadoDTO(UUID identificador, String nombre, TipoEstadoDTO tipoEstado) {
+    public EstadoDTO(UUID identificador, String nombre, TipoEstadoDTO tipoEstado, String descripcion) {
         super();
         setIdentificador(identificador);
         setNombre(nombre);
+        setDescripcion(descripcion);
         setTipoEstado(tipoEstado);
     }
 
-    public final EstadoDTO setIdentificador(final UUID identificador) {
+    public String getDescripcion() {
+		return descripcion;
+	}
+
+
+	public final EstadoDTO setDescripcion(String descripcion) {
+		this.descripcion = UtilText.applyTrim(descripcion);
+		return this;
+	}
+
+
+	public final EstadoDTO setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
         return this;
     }

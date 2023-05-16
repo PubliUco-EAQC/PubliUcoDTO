@@ -1,10 +1,9 @@
 package co.edu.uco.publiuco.dto;
 
-import co.edu.uco.publiuco.crosscutting.utils.UtilDate;
-
-import co.edu.uco.publiuco.crosscutting.utils.UtilObject;
-import co.edu.uco.publiuco.crosscutting.utils.UtilText;
-import co.edu.uco.publiuco.crosscutting.utils.UtilUUID;
+import co.edu.uco.publiuco.utils.UtilDate;
+import co.edu.uco.publiuco.utils.UtilObject;
+import co.edu.uco.publiuco.utils.UtilText;
+import co.edu.uco.publiuco.utils.UtilUUID;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -18,8 +17,6 @@ public final class ComentarioLectorDTO {
 	private LocalDateTime fechaCalificacion;
 	private EstadoDTO estado;
 
-	private static final ComentarioLectorDTO INSTANCE_DEFAULT = ComentarioLectorDTO.create();
-
 	public ComentarioLectorDTO() {
 		super();
 		setIdentificador(UtilUUID.getDefaultValue());
@@ -30,6 +27,8 @@ public final class ComentarioLectorDTO {
 		setFechaCalificacion(UtilDate.getDefaultValue());
 		setEstado(EstadoDTO.create() );
 	}
+
+
 
 	public ComentarioLectorDTO(UUID identificador, LectorDTO lector, PublicacionDTO publicacion, ComentarioLectorDTO comentarioPadre, String contenido, LocalDateTime fechaCalificacion, EstadoDTO estado) {
 		super();
